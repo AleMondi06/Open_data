@@ -40,6 +40,9 @@ namespace Open_data
             ListViewPiloti.Columns.Add("Years Active", 100);
             ListViewPiloti.Columns.Add("Champion", 100);
 
+            // Associa l'evento ItemActivate alla ListView
+            ListViewPiloti.ItemActivate += ListViewPiloti_ItemActivate;
+
             // Aggiungi opzioni alla ComboBox
             ComboBoxPilota.Items.Add("Nationality");
             ComboBoxPilota.Items.Add("Active");
@@ -144,6 +147,16 @@ namespace Open_data
                 item.SubItems.Add(driver.YearsActive.ToString());
                 item.SubItems.Add(driver.Champion.ToString());
 
+                // Verifica se il pilota è attivo (Active == "True")
+                if (driver.Active.ToLower() == "true")
+                {
+                    // Colora di verde il pilota attivo
+                    item.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    item.ForeColor = System.Drawing.Color.Red;
+                }
                 ListViewPiloti.Items.Add(item);
             }
         }
@@ -233,6 +246,29 @@ namespace Open_data
             // Ripopola la ListView con tutti i piloti non filtrati
             PopulateListView(drivers);
         }
+
+        // Metodo per aprire il profilo Wikipedia del pilota selezionato
+        private void ListViewPiloti_ItemActivate(object sender, EventArgs e)
+        {
+            // Verifica se c'è un elemento selezionato
+            if (ListViewPiloti.SelectedItems.Count > 0)
+            {
+                // Ottieni il nome del pilota selezionato dalla prima colonna
+                var selectedItem = ListViewPiloti.SelectedItems[0];
+                string driverName = selectedItem.SubItems[0].Text; // Il nome del pilota è nella prima colonna
+
+                // Costruisci l'URL per la pagina Wikipedia del pilota
+                string wikipediaUrl = $"https://en.wikipedia.org/wiki/{driverName.Replace(" ", "_")}";
+
+                // Usa Process.Start per aprire il link nel browser 
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = wikipediaUrl,
+                    UseShellExecute = true // Necessario per aprire l'URL nel browser predefinito
+                });
+            }
+        }
+
         private void ListLinkButton_Click(object sender, EventArgs e)
         {
             // Usa Process.Start per aprire il link nel browser
