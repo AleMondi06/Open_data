@@ -39,6 +39,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ResetFilterButton = new System.Windows.Forms.Button();
             this.ListLinkButton = new System.Windows.Forms.Button();
+            this.WinsButton = new System.Windows.Forms.Button();
+            this.PoleButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SearchBoxPilota
@@ -124,7 +126,7 @@
             // 
             // ResetFilterButton
             // 
-            this.ResetFilterButton.Location = new System.Drawing.Point(931, 16);
+            this.ResetFilterButton.Location = new System.Drawing.Point(931, 23);
             this.ResetFilterButton.Name = "ResetFilterButton";
             this.ResetFilterButton.Size = new System.Drawing.Size(101, 37);
             this.ResetFilterButton.TabIndex = 15;
@@ -142,6 +144,26 @@
             this.ListLinkButton.UseVisualStyleBackColor = true;
             this.ListLinkButton.Click += new System.EventHandler(this.ListLinkButton_Click);
             // 
+            // WinsButton
+            // 
+            this.WinsButton.Location = new System.Drawing.Point(670, 23);
+            this.WinsButton.Name = "WinsButton";
+            this.WinsButton.Size = new System.Drawing.Size(101, 37);
+            this.WinsButton.TabIndex = 17;
+            this.WinsButton.Text = "Ordina per Vittorie";
+            this.WinsButton.UseVisualStyleBackColor = true;
+            this.WinsButton.Click += new System.EventHandler(this.WinsButton_Click);
+            // 
+            // PoleButton
+            // 
+            this.PoleButton.Location = new System.Drawing.Point(794, 22);
+            this.PoleButton.Name = "PoleButton";
+            this.PoleButton.Size = new System.Drawing.Size(101, 37);
+            this.PoleButton.TabIndex = 18;
+            this.PoleButton.Text = "Ordina per PolePosition";
+            this.PoleButton.UseVisualStyleBackColor = true;
+            this.PoleButton.Click += new System.EventHandler(this.PoleButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -149,6 +171,8 @@
             this.BackgroundImage = global::Open_data.Properties.Resources.sfondo_bandiera_a_scacchi;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1044, 580);
+            this.Controls.Add(this.PoleButton);
+            this.Controls.Add(this.WinsButton);
             this.Controls.Add(this.ListLinkButton);
             this.Controls.Add(this.ResetFilterButton);
             this.Controls.Add(this.label3);
@@ -180,6 +204,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button ResetFilterButton;
         private System.Windows.Forms.Button ListLinkButton;
+        private System.Windows.Forms.Button WinsButton;
+        private System.Windows.Forms.Button PoleButton;
     }
 }
 

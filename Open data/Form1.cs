@@ -176,7 +176,8 @@ namespace Open_data
             // Filtra per nome pilota se c'è un testo inserito nella SearchBoxPilota
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                filteredDrivers = filteredDrivers.Where(d => d.Driver.ToLower().Contains(searchTerm));
+                //Il metodo Where è un'operazione di filtro fornita da LINQ e restituisce elementi che soddisfano una determinata condizione
+                filteredDrivers = filteredDrivers.Where(d => d.Driver.ToLower().Contains(searchTerm)); 
             }
 
             // Filtra per nazionalità se c'è un testo inserito nella NationalityBox
@@ -208,6 +209,23 @@ namespace Open_data
 
             // Aggiorna la ListView con i risultati filtrati
             PopulateListView(filteredDrivers);
+        }
+        private void WinsButton_Click(object sender, EventArgs e)
+        {
+            // Ordina la lista dei piloti per numero di vittorie (RaceWins)
+            var sortedByWins = drivers.OrderByDescending(d => double.Parse(d.RaceWins)).ToList();
+
+            // Ripopola la ListView con la lista ordinata
+            PopulateListView(sortedByWins);
+        }
+
+        private void PoleButton_Click(object sender, EventArgs e)
+        {
+            // Ordina la lista dei piloti per numero di pole position (PolePositions)
+            var sortedByPoles = drivers.OrderByDescending(d => double.Parse(d.PolePositions)).ToList();
+
+            // Ripopola la ListView con la lista ordinata
+            PopulateListView(sortedByPoles);
         }
 
         // Evento che si attiva quando cambia la selezione nella ComboBox ComboBoxPilota
@@ -258,7 +276,7 @@ namespace Open_data
                 string driverName = selectedItem.SubItems[0].Text; // Il nome del pilota è nella prima colonna
 
                 // Costruisci l'URL per la pagina Wikipedia del pilota
-                string wikipediaUrl = $"https://en.wikipedia.org/wiki/{driverName.Replace(" ", "_")}";
+                string wikipediaUrl = $"https://it.wikipedia.org/wiki/{driverName.Replace(" ", "_")}";
 
                 // Usa Process.Start per aprire il link nel browser 
                 Process.Start(new ProcessStartInfo
@@ -357,5 +375,6 @@ namespace Open_data
                 Champion = champion;
             }
         }
+
     }
 }
